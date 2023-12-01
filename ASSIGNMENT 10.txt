@@ -1,0 +1,16 @@
+from sklearn import datasets
+from sklearn_extra.cluster import KMedoids
+import matplotlib.pyplot as plt
+
+# Load the iris dataset
+iris = datasets.load_iris()
+X = iris.data
+
+# Apply KMedoids
+kmedoids = KMedoids(n_clusters=20, max_iter=200, random_state=0).fit(X)
+
+# Visualize the results
+plt.figure(figsize=(15, 10))
+plt.scatter(X[:, 0], X[:, 1], c=kmedoids.labels_, cmap='viridis')
+plt.scatter(kmedoids.cluster_centers_[:, 0], kmedoids.cluster_centers_[:, 1], s=150, c='red')
+plt.show()
